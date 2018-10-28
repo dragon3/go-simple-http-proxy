@@ -1,4 +1,4 @@
-.PHONY: dep dep-vendor-only clean test build run
+.PHONY: dep dep-vendor-only clean test build build-image run
 
 dep:
 	dep ensure -v
@@ -14,6 +14,12 @@ test:
 
 build:
 	CGO_ENABLED=0 go build -o bin/simple-http-proxy
+
+build-image:
+	docker build --rm -t dragon3/simple-http-proxy .
+
+push-image:
+	docker push dragon3/simple-http-proxy
 
 run:
 	go run main.go
