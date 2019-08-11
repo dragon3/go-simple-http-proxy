@@ -10,4 +10,5 @@ jobs:
       uses: docker/whalesay@master
       with:
         entrypoint: cowsay
-        args: hello actions
+        args: hello actions in go-simple-http-proxy
+
