@@ -1,0 +1,13 @@
+on: push
+name: on push
+jobs:
+  sayHi:
+    name: say hi
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: say hi
+      uses: docker/whalesay@master
+      with:
+        entrypoint: cowsay
+        args: hello actions
