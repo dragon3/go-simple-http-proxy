@@ -10,12 +10,12 @@ jobs:
       with:
         go-version: 1.12.8
       env:
-        GOPATH: /go
+        GOPATH: "${HOME}/go"
     - name: Checkout
       uses: actions/checkout@v1
       with:
         fetch-depth: 1
-        path: /go/src/github.com/dragon3/go-simple-http-proxy
+        path: "${HOME}/go/src/github.com/dragon3/go-simple-http-proxy"
     - name: Install dep
       run: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | INSTALL_DIRECTORY="${GOROOT}/bin" sh
     - name: Run dep ensure
