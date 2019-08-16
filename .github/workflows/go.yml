@@ -5,7 +5,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Go env
+      - name: Setup go env
         uses: actions/setup-go@v1
         with:
           go-version: 1.12.8
@@ -16,11 +16,14 @@ jobs:
         run: |
           mkdir -p "${GOBIN}"
           curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+      - name: Ensure go src dir
+        run: |
+          mkdir -p "${{ github.workspace }}/go/src/github.com/dragon3"
       - name: Checkout
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
-          path: ${{ github.workspace }}/go/github.com/dragon3/go-simple-http-proxy
+          path: ${{ github.workspace }}/go/src/github.com/dragon3/go-simple-http-proxy
       - name: Run dep ensure
         run: |
           "${GOBIN}/dep" ensure -v -vendor-only
