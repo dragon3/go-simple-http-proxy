@@ -10,18 +10,20 @@ jobs:
         with:
           go-version: 1.12.8
         env:
-          GOPATH: "${{ runner.workspace }}/go"
-          GOBIN: "${{ runner.workspace }}/go/bin"
+          GOPATH: ${{ github.workspace }}/go
+          GOBIN: ${{ github.workspace }}/go/bin
       - name: Install dep
-        run: >
+        run: |
           mkdir -p "${GOBIN}"
           curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - name: Checkout
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
-          path: "${{ runner.workspace }}/go/github.com/dragon3/go-simple-http-proxy"
+          path: ${{ github.workspace }}/go/github.com/dragon3/go-simple-http-proxy
       - name: Run dep ensure
-        run: "${GOBIN}/dep" ensure -v -vendor-only
+        run: |
+          "${GOBIN}/dep" ensure -v -vendor-only
       - name: Run test
-        run: go test -v ./...
+        run: |
+          go test -v ./...
