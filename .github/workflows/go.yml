@@ -13,7 +13,9 @@ jobs:
           GOPATH: "${{ runner.workspace }}/go"
           GOBIN: "${{ runner.workspace }}/go/bin"
       - name: Install dep
-        run: mkdir -p "${GOBIN}" && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+        run: >
+          mkdir -p "${GOBIN}"
+          curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
       - name: Checkout
         uses: actions/checkout@v1
         with:
