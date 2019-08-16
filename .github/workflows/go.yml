@@ -13,6 +13,8 @@ jobs:
         go-version: 1.12
     - run: go get -u -v github.com/golang/dep/cmd/dep
     - run: dep ensure -v -verndor-only
+      env:
+        PATH: "${HOME}/go/bin:${PATH}"
     - run: go test -v ./...
 
       
